@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
@@ -12,9 +12,9 @@ module.exports = (env, opts) => {
     resolve: {
       extensions: [
         '.vue', '.js'
-      ]
+      ],
     },
-    //진입점
+    // 진입점
     entry: {
       app: [
         '@babel/polyfill',
@@ -63,26 +63,26 @@ module.exports = (env, opts) => {
         patterns: [
           { from: 'assets/', to: '' }
         ]
-      }),
+      })
     ]
   }
 
   if (opts.mode === 'development') {
-    //개발용
+    // 개발용
     return merge(config, {
-      //추가 개발용 옵션
+      // 추가 개발용 옵션
       devtool: 'eval',
       devServer: {
         open: false,
         hot: true,
         contentBase: path.join(__dirname, 'dist'),
         port: 8080
-      },
+      }
     })
   } else {
-    //제품용
+    // 제품용
     return merge(config, {
-      //추가 제품용 옵션
+      // 추가 제품용 옵션
       devtool: 'cheap-module-source-map',
       plugins: [
         new CleanWebpackPlugin()
